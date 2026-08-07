@@ -10,6 +10,7 @@ import {
 import { CardsService } from './cards.service';
 import { CreateCardDto } from './dto/create-card.dto';
 import { UpdateCardDto } from './dto/update-card.dto';
+import { MoveCardDto } from './dto/move-card.dto';
 
 @Controller('cards')
 export class CardsController {
@@ -23,6 +24,11 @@ export class CardsController {
   @Post()
   create(@Body() dto: CreateCardDto) {
     return this.cardsService.create(dto);
+  }
+
+  @Patch(':id/move')
+  move(@Param('id') id: string, @Body() dto: MoveCardDto) {
+    return this.cardsService.move(id, dto);
   }
 
   @Patch(':id')

@@ -10,10 +10,6 @@ export class CreateCardDto {
   @IsNotEmpty()
   columnId!: string;
 
-  @IsString()
-  @IsNotEmpty()
-  position!: string;
-
   @IsOptional()
   @IsString()
   @MaxLength(2000)

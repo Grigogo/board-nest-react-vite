@@ -1,0 +1,25 @@
+<!doctype html>
+<meta charset="utf-8" />
+
+<body>
+  <pre id="log"></pre>
+  <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+  <script>
+    const log = (m) =>
+      (document.getElementById('log').textContent += m + '\n');
+
+    const socket = io('http://localhost:3001');
+
+    socket.on('connect', () => {
+      log('connected as ' + socket.id);
+      socket.emit('board:join', 'cmsg1rlep0000r3ndjdff5bis', (ack) =>
+        log('join ack: ' + JSON.stringify(ack)),
+      );
+    });
+
+    // временная подписка на всё подряд — удобно для отладки
+    socket.onAny((event, ...args) =>
+      log('event: ' + event + ' ' + JSON.stringify(args)),
+    );
+  </script>
+</body>

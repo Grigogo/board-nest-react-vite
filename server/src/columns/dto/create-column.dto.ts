@@ -9,8 +9,4 @@ export class CreateColumnDto {
   @IsString()
   @IsNotEmpty()
   boardId!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  position!: string;
 }
